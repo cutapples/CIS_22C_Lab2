@@ -1,45 +1,25 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
+#include "Node.h"
+#include "HeaderNode.h"
 using namespace std;
 
-template <class T>
-struct Node {
-public:
-	T data;
-	Node<T>* next;
-
-	Node();
-	Node(T data);
-};
-
-template <class T>
-Node<T>::Node() {
-	this->next = nullptr;
-}
-
-template <class T>
-Node<T>::Node(T data) {
-	this->data = data;
-	this->next = nullptr;
-}
 
 template <class T>
 class SLinkedList {
 private:
-	Node<T>* head;
-	Node<T>* tail;
-	int count;
+	HeaderNode* list;
 
 public:
 	SLinkedList();
 
-	void addFront(T data);
-	void addBack(T data);
+	void addFront(T& data);
+	void addBack(T& data);
 
 	void removeFront();
 	void removeBack();
 
-	bool search(T data);
+	bool search(T& data);
 
 	int returnCount();
 	void emptyList();
@@ -51,31 +31,35 @@ public:
 
 template <class T>
 SLinkedList<T>::SLinkedList() {
-	this->count = 0;
-	this->head = new Node<T>();
-	this->tail = new Node<T>();
-	this->head->next = this->tail;
-	this->tail->next = this->head;
+	this->list = new HeaderNode<T>();
 }
 
 template <class T>
-void SLinkedList<T>::addFront(T data) {
+void SLinkedList<T>::addFront(T& data) {
 	Node<T>* newNode = new Node<T>(data);
-	if (this->head->next == this->tail) {
-		this->tail->next = newNode;
+	if (this->list->count = 0) {
+		this->list->front = newNode;
+		this->list->back = newNode;
+		this->list->count++;
 	}
-	newNode->next = this->head->next;
-	this->head->next = newNode;
-	this->count++;
+	else {
+		newNode->next = this->list->front;
+		this->list->front = newNode;
+		this->list->count++;
+	}
 }
 
 template <class T>
-void SLinkedList<T>::addBack(T data) {
-	Node<T>* newNode = new Node<T>(data);
-	newNode->next = this->tail;
-	this->tail->next->next = newNode;
-	this->tail->next = newNode;
-	this->count++;
+void SLinkedList<T>::addBack(T& data) {
+	if (this->list->count = 0) {
+		this->addFront(data);
+	}
+	else {
+		Node<T>* newNode = new Node<T>(data);
+		this->list->back->next = newNode;
+		this->list->back = newNode;
+		this->count++;
+	}
 }
 
 template <class T>
