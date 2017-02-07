@@ -1,14 +1,14 @@
 #ifndef STACK_H
 #define STACK_H
-#include "LinkedList.h"
+#include "SLinkedList.h"
+#include "HeaderNode.h"
 using namespace std;
 
 template <class T>
-class Stack : public SLinkedList<T> {
+class Stack : protected SLinkedList<T> {
 private:
-	Node<T>* head;
-	Node<T>* tail;
-	int count;
+	HeaderNode<T> list;
+
 public:
 	Stack();
 
@@ -37,13 +37,7 @@ Stack<T>::~Stack() {
 
 template <class T>
 void Stack<T>::push(T data) {
-	Node<T>* newNode = new Node<T>(data);
-	if (this->head->next == this->tail) {
-		this->tail->next = newNode;
-	}
-	newNode->next = this->head->next;
-	this->head->next = newNode;
-	this->count++;
+	this->addFront(data);
 }
 
 template <class T>
