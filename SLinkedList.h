@@ -58,24 +58,24 @@ void SLinkedList<T>::addBack(T& data) {
 		Node<T>* newNode = new Node<T>(data);
 		this->list->back->next = newNode;
 		this->list->back = newNode;
-		this->count++;
+		this->list->count++;
 	}
 }
 
 template <class T>
 void SLinkedList<T>::removeFront() {
 	if (count > 1) {
-		Node<T>* tempPtr = this->head->next;
-		this->head->next = tempPtr->next;
+		Node<T>* tempPtr = this->list->front;
+		this->front->next = tempPtr->next;
 		delete tempPtr;
-		this->count--;
+		this->list->count--;
 	}
 	else if (count == 1) {
-		Node<T>* tempPtr = this->head->next;
-		this->head->next = tempPtr->next;
+		Node<T>* tempPtr = this->list->front;
+		this->list->front = nullptr;
+		this->list->back = nullptr;
 		delete tempPtr;
-		this->count--;
-		this->tail->next = this->head;
+		this->list->count--;
 	}
 	else {
 		throw ListIsEmpty();
@@ -84,16 +84,23 @@ void SLinkedList<T>::removeFront() {
 
 template <class T>
 void SLinkedList<T>::removeBack() {
-	if (count > 0) {
-		Node<T>* tempPtr = this->tail->next;
-		Node<T>* prevPtr = this->head;
+	if (count > 1) {
+		Node<T>* tempPtr = this->list->back;
+		Node<T>* prevPtr = this->list->front;
 		while (prevPtr->next != tempPtr) {
 			prevPtr = prevPtr->next;
 		}
-		prevPtr->next = this->tail;
-		this->tail->next = prevPtr;
+		prevPtr->next = nullptr;
+		this->list->back = prevPtr;
 		delete tempPtr;
-		this->count--;
+		this->list->count--;
+	}
+	else if (count == 1) {
+		Node<T>* tempPtr = this->list->back;
+		this->list->front = nullptr;
+		this->list->back = nullptr;
+		delete tempPtr;
+		this->list->count--;
 	}
 	else {
 		throw ListIsEmpty();
@@ -101,9 +108,12 @@ void SLinkedList<T>::removeBack() {
 }
 
 template <class T>
-bool SLinkedList<T>::search(T data) {
-	Node<T>* tempPtr = this->head;
-	while (tempPtr->next != this->tail) {
+bool SLinkedList<T>::search(T& data) {
+	Node<T>* tempPtr = this->list->front;
+	if (tempPtr->data == data) {
+		return true;
+	}
+	while (tempPtr->next != nullptr) {
 		if (tempPtr->data == data) {
 			return true;
 		}
@@ -116,12 +126,12 @@ bool SLinkedList<T>::search(T data) {
 
 template <class T>
 int SLinkedList<T>::returnCount() {
-	return this->count;
+	return this->list->count;
 }
 
 template <class T>
 void SLinkedList<T>::emptyList() {
-	while (this->head->next != this->tail) {
+	while (this->list->count > 0) {
 		removeFront();
 	}
 }
@@ -129,8 +139,7 @@ void SLinkedList<T>::emptyList() {
 template <class T>
 SLinkedList<T>::~SLinkedList() {
 	emptyList();
-	delete this->head;
-	delete this->tail;
+	delete this->list;
 }
 
 #endif LINKEDLIST_H
