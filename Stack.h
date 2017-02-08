@@ -43,7 +43,7 @@ void Stack<T>::pop() {
 template <class T>
 T& Stack<T>::top() {
 	if (count > 0) {
-		return this->list->front->data;
+		return this->list->front->data&;
 	}
 }
 #endif STACK_H
