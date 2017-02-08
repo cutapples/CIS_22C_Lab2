@@ -24,8 +24,6 @@ public:
 	int returnCount();
 	void emptyList();
 
-	class ListIsEmpty{};
-
 	~SLinkedList();
 };
 
@@ -78,7 +76,7 @@ void SLinkedList<T>::removeFront() {
 		this->list->count--;
 	}
 	else {
-		throw ListIsEmpty();
+		throw -1;
 	}
 }
 
@@ -103,7 +101,7 @@ void SLinkedList<T>::removeBack() {
 		this->list->count--;
 	}
 	else {
-		throw ListIsEmpty();
+		throw -1;
 	}
 }
 
