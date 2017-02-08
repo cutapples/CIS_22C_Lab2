@@ -7,70 +7,43 @@ using namespace std;
 template <class T>
 class Stack : protected SLinkedList<T> {
 private:
-	HeaderNode<T> list;
+	HeaderNode<T>* list;
 
 public:
 	Stack();
 
-	void push(T data);
-	T pop();
-	bool isEmpty();
+	void push(T* data);
+	void pop();
+	T& top();
 
 	~Stack();
 };
 
 template <class T>
 Stack<T>::Stack() {
-	this->count = 0;
-	this->head = new Node<T>();
-	this->tail = new Node<T>();
-	this->head->next = this->tail;
-	this->tail->next = this->head;
+	this->list = new HeaderNode<T>();
 }
 
 template <class T>
 Stack<T>::~Stack() {
-	emptyList();
-	delete this->head;
-	delete this->tail;
+	this->emptyList();
+	delete this->list;
 }
 
 template <class T>
-void Stack<T>::push(T data) {
+void Stack<T>::push(T& data) {
 	this->addFront(data);
 }
 
 template <class T>
-T Stack<T>::pop() {
-	T tempData;
-	if (count > 1) {
-		Node<T>* tempPtr = this->head->next;
-		this->head->next = tempPtr->next;
-		tempData = tempPtr->data;
-		delete tempPtr;
-		this->count--;
-	}
-	else if (count == 1) {
-		Node<T>* tempPtr = this->head->next;
-		this->head->next = tempPtr->next;
-		tempData = tempPtr->data;
-		delete tempPtr;
-		this->count--;
-		this->tail->next = this->head;
-	}
-	else {
-		throw ListIsEmpty();
-	}
-	return tempData;
+void Stack<T>::pop() {
+	this->removeFront();
 }
 
 template <class T>
-bool Stack<T>::isEmpty() {
-	if (count == 0) {
-		return true;
-	}
-	else {
-		return false;
+T& Stack<T>::top() {
+	if (count > 0) {
+		return this->list->front->data;
 	}
 }
 #endif STACK_H
