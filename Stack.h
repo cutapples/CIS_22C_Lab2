@@ -1,20 +1,18 @@
 #ifndef STACK_H
 #define STACK_H
+#include <iostream>
 #include "SLinkedList.h"
 #include "HeaderNode.h"
 using namespace std;
 
 template <class T>
 class Stack : protected SLinkedList<T> {
-private:
-	HeaderNode<T>* list;
-
 public:
 	Stack();
 
 	void push(T* data);
 	void pop();
-	T& top();
+	void top();
 
 	~Stack();
 };
@@ -31,7 +29,7 @@ Stack<T>::~Stack() {
 }
 
 template <class T>
-void Stack<T>::push(T& data) {
+void Stack<T>::push(T* data) {
 	this->addFront(data);
 }
 
@@ -41,9 +39,9 @@ void Stack<T>::pop() {
 }
 
 template <class T>
-T& Stack<T>::top() {
-	if (count > 0) {
-		return this->list->front->data&;
+void Stack<T>::top() {
+	if (this->list->count > 0) {
+		cout << *this->list->front->data;
 	}
 }
 #endif STACK_H
