@@ -1,56 +1,59 @@
 #include <iostream>
 #include <string>
 #include "Stack.h"
-#include "LinkedList.h"
+#include "SLinkedList.h"
 using namespace std;
 
 int main() {
 	Stack<int> intStack;
-	SLinkedList<string> stringStack;
 
-	intStack.push(5);
-	intStack.push(4);
-	intStack.push(3);
-	intStack.push(2);
-	intStack.push(1);
+	int* a = new int(5);
+	int* b = new int(4);
+	int* c = new int(3);
+	int* d = new int(2);
+	int* e = new int(1);
 
-	stringStack.addFront("Five");
-	stringStack.addFront("Four");
-	stringStack.addFront("Three");
-	stringStack.addFront("Two");
-	stringStack.addFront("One");
+	intStack.push(a);
+	intStack.push(b);
+	intStack.push(c);
+	intStack.push(d);
+	intStack.push(e);
 
 	try {
 		cout << "Poping int stack" << endl;
-		cout << intStack.pop() << endl;
-		cout << intStack.pop() << endl;
-		cout << intStack.pop() << endl;
-		cout << intStack.pop() << endl;
-		cout << intStack.pop() << endl;
-		cout << intStack.pop() << endl;
+		intStack.top();
+		intStack.pop();
+		intStack.top();
+		intStack.pop();
+		intStack.top();
+		intStack.pop();
+		intStack.top();
+		intStack.pop();
+		intStack.top();
+		intStack.pop();
+		intStack.top();
+		intStack.pop();
 	}
-	catch (Stack<int>::ListIsEmpty) {
-		cout << "List is empty" << endl;
+	catch (int error) {
+		if (error == -1){
+			cout << "List is empty" << endl;
+		}
 	}
 
 	try {
-		cout << "Poping string stack" << endl;
-		cout << "Current String Stack Count: " << stringStack.returnCount() << endl;
-		stringStack.removeFront();
-		cout << "Current String Stack Count: " << stringStack.returnCount() << endl;
-		stringStack.removeFront();
-		cout << "Current String Stack Count: " << stringStack.returnCount() << endl;
-		stringStack.removeFront();
-		cout << "Current String Stack Count: " << stringStack.returnCount() << endl;
-		stringStack.removeFront();
-		cout << "Current String Stack Count: " << stringStack.returnCount() << endl;
-		stringStack.removeFront();
-		cout << "Current String Stack Count: " << stringStack.returnCount() << endl;
-		stringStack.removeFront();
+		
 	}
-	catch (SLinkedList<string>::ListIsEmpty) {
-		cout << "List is empty" << endl;
+	catch (int error) {
+		if (error == -1){
+			cout << "List is empty" << endl;
+		}
 	}
+
+	delete a;
+	delete b;
+	delete c;
+	delete d;
+	delete e;
 
 	system("pause");
 	return 0;
