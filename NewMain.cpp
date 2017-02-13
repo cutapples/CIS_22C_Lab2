@@ -2,6 +2,8 @@
 #include <string>
 #include "Stack.h"
 #include "SLinkedList.h"
+#include "Currency.h"
+#include "USDollars.h"
 using namespace std;
 
 int showChoices();
@@ -10,10 +12,12 @@ void showStackOptions();
 void endProgram();
 void useIntStack();
 void useStringStack();
-
+void useCurrencyStack();
 
 int main(){
     int choice;
+    
+
     
     choice = showChoices();
     checkChoice(choice);
@@ -57,6 +61,10 @@ void showStackOptions(){
     
     else if(choice2 == 2){
         useStringStack();
+    }
+    
+    else if (choice2 == 3){
+        useCurrencyStack();
     }
 }
 
@@ -114,7 +122,6 @@ void useIntStack(){
 
     cout << "The stack is now empty.\n";
     
-    
 }
 
 void useStringStack(){
@@ -171,7 +178,86 @@ void useStringStack(){
     cout << a << ", has been popped from the stack.\n";
     
     cout << "The stack is now empty.\n";
+   
+    
+}
 
+void useCurrencyStack(){
+    Stack<Currency> currencyStack;
+   
+    float f, g, h, i, j;
+    
+    Currency* a = new USDollars();
+    Currency* b = new USDollars();
+    Currency* c = new USDollars();
+    Currency* d = new USDollars();
+    Currency* e = new USDollars();
+    
+    cout << "Enter 5 different dollar and cents values (ex. 12.12)\n";
+    
+    cin >> f >> g >> h >> i >> j;
+    
+    a->addValue(f);
+    b->addValue(g);
+    c->addValue(h);
+    d->addValue(i);
+    e->addValue(j);
+
+    cout << "Stack functions coming up!\n";
+    cout << " Pushing ";
+    cout << a << ", ";
+    cout << b << ", ";
+    cout << c << ", ";
+    cout << d << ", ";
+    cout << e << ", ";
+
+    currencyStack.push(*a);
+    currencyStack.push(*b);
+    currencyStack.push(*c);
+    currencyStack.push(*d);
+    currencyStack.push(*e);
+
+    cout << "Time to pop the stack.\n";
+    
+    currencyStack.top();
+    cout << " is on the top of the stack\n";
+    
+    cout << "Popping ";
+    cout << e;
+    currencyStack.pop();
+    
+    currencyStack.top();
+    cout << " is on the top of the stack\n";
+    
+    cout << "Popping ";
+    cout << d;
+    currencyStack.pop();
+    
+    currencyStack.top();
+    cout << " is on the top of the stack\n";
+    
+    cout << "Popping ";
+    cout << c;
+    currencyStack.pop();
+    
+    currencyStack.top();
+    cout << " is on the top of the stack\n";
+    
+    cout << "Popping ";
+    cout << b;
+    currencyStack.pop();
+
+    currencyStack.top();
+    cout << " is on the top of the stack\n";
+    
+    cout << "Popping ";
+    cout << a;
+    currencyStack.pop();
+   
+    cout << "The list is empty.\n";
+    
+    
+    
 }
 
 void endProgram(){
