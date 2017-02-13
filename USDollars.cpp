@@ -18,7 +18,7 @@ USDollars::USDollars() {
 	this->FractionalParts = 0;
 }
 
-USDollars::USDollars(int w, int f) {
+USDollars::USDollars(float w, float f) {
 	this->WholeName = "Dollars";
 	this->FractionalName = "Cents";
 	this->WholeParts = w;
