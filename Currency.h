@@ -22,6 +22,8 @@ public:
 	void subFractional(float fractionalParts);
 	void addValue(float someValue);
 	void subValue(float someValue);
+	
+	friend void splitParts(float& wholeParts, float& fractionalParts, float someValue);
 
 	virtual ~Currency() = 0;
 };
