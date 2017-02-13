@@ -9,7 +9,7 @@ class USDollars : public Currency {
 
 public:
 	USDollars();
-	USDollars(int, int);
+	USDollars(float, float);
 
 	friend bool operator==(const USDollars& currentCurrency, const USDollars& testCurrency);
 	friend bool operator<(const USDollars& currentCurrency, const float someValue);
