@@ -13,13 +13,13 @@ protected:
 public:
 	SLinkedList();
 
-	void addFront(T* data);
-	void addBack(T* data);
+	void addFront(T& data);
+	void addBack(T& data);
 
 	void removeFront();
 	void removeBack();
 
-	bool search(T* data);
+	bool search(T& data);
 
 	int returnCount();
 	void emptyList();
@@ -33,7 +33,7 @@ SLinkedList<T>::SLinkedList() {
 }
 
 template <class T>
-void SLinkedList<T>::addFront(T* data) {
+void SLinkedList<T>::addFront(T& data) {
 	Node<T>* newNode = new Node<T>(data);
 	if (this->list->count == 0) {
 		this->list->front = newNode;
@@ -48,7 +48,7 @@ void SLinkedList<T>::addFront(T* data) {
 }
 
 template <class T>
-void SLinkedList<T>::addBack(T* data) {
+void SLinkedList<T>::addBack(T& data) {
 	if (this->list->count == 0) {
 		this->addFront(data);
 	}
@@ -76,7 +76,7 @@ void SLinkedList<T>::removeFront() {
 		this->list->count--;
 	}
 	else {
-		throw -1;
+		throw - 1;
 	}
 }
 
@@ -101,18 +101,18 @@ void SLinkedList<T>::removeBack() {
 		this->list->count--;
 	}
 	else {
-		throw -1;
+		throw - 1;
 	}
 }
 
 template <class T>
-bool SLinkedList<T>::search(T* data) {
+bool SLinkedList<T>::search(T& data) {
 	Node<T>* tempPtr = this->list->front;
-	if (tempPtr->data == data) {
+	if (*tempPtr->data == *data) {
 		return true;
 	}
 	while (tempPtr->next != nullptr) {
-		if (tempPtr->data == data) {
+		if (*tempPtr->data == *data) {
 			return true;
 		}
 		else {

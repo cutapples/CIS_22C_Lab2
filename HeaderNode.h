@@ -12,7 +12,7 @@ public:
 };
 
 template <class T>
-HeaderNode<T>::HeaderNode(){
+HeaderNode<T>::HeaderNode() {
 	this->front = nullptr;
 	this->back = nullptr;
 	this->count = 0;

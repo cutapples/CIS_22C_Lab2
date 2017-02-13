@@ -8,7 +8,7 @@ public:
 	Node<T>* next;
 
 	Node();
-	Node(T* data);
+	Node(T& data);
 };
 
 template <class T>
@@ -18,8 +18,8 @@ Node<T>::Node() {
 }
 
 template <class T>
-Node<T>::Node(T* data) {
-	this->data = data;
+Node<T>::Node(T& data) {
+	this->data = &data;
 	this->next = nullptr;
 }
 
