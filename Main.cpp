@@ -1,17 +1,16 @@
 #include <iostream>
 #include <string>
 #include "Stack.h"
-#include "SLinkedList.h"
 using namespace std;
 
 int main() {
 	Stack<int> intStack;
 
-	int* a = new int(5);
-	int* b = new int(4);
-	int* c = new int(3);
-	int* d = new int(2);
-	int* e = new int(1);
+	int a = 5;
+	int b = 4;
+	int c = 3;
+	int d = 2;
+	int e = 1;
 
 	intStack.push(a);
 	intStack.push(b);
@@ -35,25 +34,10 @@ int main() {
 		intStack.pop();
 	}
 	catch (int error) {
-		if (error == -1){
+		if (error == -1) {
 			cout << "List is empty" << endl;
 		}
 	}
-
-	try {
-		
-	}
-	catch (int error) {
-		if (error == -1){
-			cout << "List is empty" << endl;
-		}
-	}
-
-	delete a;
-	delete b;
-	delete c;
-	delete d;
-	delete e;
 
 	system("pause");
 	return 0;
