@@ -19,6 +19,9 @@ public:
 	void removeFront();
 	void removeBack();
 
+	void addInOrder(T& data);
+	void removeNode(T& data);
+
 	bool search(T& data);
 
 	int returnCount();
@@ -76,7 +79,7 @@ void SLinkedList<T>::removeFront() {
 		this->list->count--;
 	}
 	else {
-		throw - 1;
+		throw -1;
 	}
 }
 
@@ -101,7 +104,52 @@ void SLinkedList<T>::removeBack() {
 		this->list->count--;
 	}
 	else {
-		throw - 1;
+		throw -1;
+	}
+}
+
+template <class T>
+void SLinkedList<T>::addInOrder(T& data) {
+	Node<T>* prevPtr = this->list->front;
+	if (prevPtr == nullptr || *data < *prevPtr->data) {
+		this->addFront(data);
+	}
+	else {
+		while ((prevPtr->next != nullptr) && (*data < *prevPtr->next->data)) {
+			prevPtr = prevPtr->next;
+		}
+		Node<T>* newNode = new Node<T>(data);
+		if (prevPtr->next == nullptr) {
+			prevPtr->next = newNode;
+			this->list->back = newNode;
+			this->list->count++;
+		}
+		else {
+			newNode->next = prevPtr->next;
+			prevPtr->next = newNode;
+			this->list->count++;
+		}
+	}
+}
+
+template <class T>
+void SLinkedList<T>::removeNode(T& data) {
+	Node<T>* prevPtr = this->list->front;
+	if (*prevPtr->data == *data) {
+		this->deleteFront();
+		return;
+	}
+	while ((prevPtr->next != nullptr) && (*prevPtr->next->data != *data)) {
+		prevPtr = prevPtr->next;
+	}
+	if (prevPtr->next == nullptr) {
+		return;
+	}
+	else if (*prevPtr->next->data == *data) {
+		Node<T>* tempPtr = prevPtr->next;
+		prevPtr->next = tempPtr->next;
+		delete tempPtr;
+		this->list->count--;
 	}
 }
 
