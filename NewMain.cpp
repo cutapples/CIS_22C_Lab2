@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Stack.h"
+#include "Queue.h"
 #include "SLinkedList.h"
 #include "Currency.h"
 #include "USDollars.h"
@@ -8,11 +8,11 @@ using namespace std;
 
 int showChoices();
 void checkChoice(int choice);
-void showStackOptions();
+void showQueueOptions();
 void endProgram();
-void useIntStack();
-void useStringStack();
-void useCurrencyStack();
+void useIntQueue();
+void useStringQueue();
+void useCurrencyQueue();
 
 int main(){
     int choice;
@@ -27,7 +27,7 @@ int showChoices(){
     
     int choice;
     
-    cout << "Would you like to see the functions of a stack?\n"
+    cout << "Would you like to see the functions of a queue?\n"
          << "1. Lets see it bro!\n"
          << "2. Nah im good bro.\n";
     cin >> choice;
@@ -37,7 +37,7 @@ int showChoices(){
 
 void checkChoice(int choice){
     if(choice == 1){
-        showStackOptions();
+        showQueueOptions();
     }
     
     if(choice == 2){
@@ -45,145 +45,147 @@ void checkChoice(int choice){
     }
 }
 
-void showStackOptions(){
+void showQueueOptions(){
     int choice2;
    
-    Stack<string> stringStack;
+    Queue<string> stringStack;
     
-    cout<< "What stack type would you like to see use the functions?\n"
-    << "1. Int stack\n"
-    << "2. String Stack\n";
+    cout<< "What  queue type would you like to see use the functions?\n"
+    << "1. Int Queue\n"
+    << "2. String Queue\n";
     cin>> choice2;
     
     if (choice2 == 1){
-        useIntStack();
+        useIntQueue();
     }
     
     else if(choice2 == 2){
-        useStringStack();
+        useStringQueue();
     }
     
     else if (choice2 == 3){
-        useCurrencyStack();
+        useCurrencyQueue();
     }
 }
 
-void useIntStack(){
-     Stack<int> intStack;
+void useIntQueue(){
+     Queue<int> intQueue;
     int a, b, c, d, e;
     
     cout << "Give me 5 integers to use for the functions.\n";
     cin >> a >> b >> c >> d >> e;
     
-  cout << "Stack functions coming up!\n";
+  cout << "Queue functions coming up!\n";
   
-    cout << "Pushing " << a << " " << b << " " << c << " " << d << " " << e << " onto the stack." << endl;
+    cout << "Enqueuing " << a << " " << b << " " << c << " " << d << " " << e << " onto the queue." << endl;
     
-    intStack.push(a);
-    intStack.push(b);
-    intStack.push(c);
-    intStack.push(d);
-    intStack.push(e);
+    intQueue.enqueue(a);
+    intQueue.enqueue(b);
+    intQueue.enqueue(c);
+    intQueue.enqueue(d);
+    intQueue.enqueue(e);
     
-    cout << a << " " << b << " " << c << " " << d << " " << e << " has been added to the stack.\n";
+    cout << a << " " << b << " " << c << " " << d << " " << e << " has been added to the queue.\n";
    
-    cout << "Time to pop the stack.\n";
+    cout << "Time to dequeue the queue.\n";
     
-    intStack.top();
-    cout << " is on top of the stack.\n";
+    intQueue.front();
+    cout << " is in front of the queue.\n";
 
-    cout << "Popping " << e << " from the stack.\n";
-    intStack.pop();
-    cout << e << " has been popped from the stack.\n";
-    intStack.top();
-    cout << " is on top of the stack.\n";
+    cout << "Dequeuing " << e << " from the queue.\n";
+    intQueue.dequeue();
+    cout << e << " has been dequeued from the queue.\n";
+    intQueue.front();
+    cout << " is in front of the queue.\n";
 
-    cout << "Popping " << d << " from the stack.\n";
-    intStack.pop();
-    cout << d << " has been popped from the stack.\n";
-    intStack.top();
-    cout << " is on top of the stack.\n";
+    cout << "Dequeuing " << d << " from the queue.\n";
+    intQueue.dequeue();
+    cout << d << " has been dequeued from the queue.\n";
+    intQueue.front();
+    cout << " is in front of the queue.\n";
 
-    cout << "Popping " << c << " from the stack.\n";
-    intStack.pop();
-    cout << c << " has been popped from the stack.\n";
-    intStack.top();
-    cout << " is on top of the stack.\n";
+    cout << "Dequeuing " << c << " from the queue.\n";
+    intQueue.dequeue();
+    cout << c << " has been dequeued from the queue.\n";
+    intQueue.front();
 
-    cout << "Popping " << b << " from the stack.\n";
-    intStack.pop();
-    cout << b << " has been popped from the stack.\n";
-    intStack.top();
-    cout << " is on top of the stack.\n";
+    cout << " is in front of the queue.\n";
 
-    cout << "Popping " << a << " from the stack.\n";
-    intStack.pop();
-    cout << a << " has been popped from the stack.\n";
+    cout << "Dequeuing " << b << " from the queue.\n";
+    intQueue.dequeue();
+    cout << b << " has been dequeued from the queue.\n";
+    intQueue.front();
 
-    cout << "The stack is now empty.\n";
+    cout << " is in front of the queue.\n";
+
+    cout << "Dequeuing " << a << " from the queue.\n";
+    intQueue.dequeue();
+    cout << a << " has been dequeued from the queue.\n";
+
+    cout << "The queue is now empty.\n";
     
 }
 
-void useStringStack(){
-    Stack<string> stringStack;
+void useStringQueue(){
+    Queue<string> stringQueue;
     
     string a, b, c, d, e;
     
     cout << "Give me 5 words to use for the functions.\n";
     cin >> a >> b >> c >> d >> e;
     
-    cout << "Stack functions coming up!\n";
+    cout << "Queue functions coming up!\n";
     
-    cout << "Pushing " << a << ", " << b << ", " << c << ", " << d << ", " << e << " onto the stack." << endl;
+    cout << "Enqueing " << a << ", " << b << ", " << c << ", " << d << ", " << e << " onto the queue." << endl;
     
-    stringStack.push(a);
-    stringStack.push(b);
-    stringStack.push(c);
-    stringStack.push(d);
-    stringStack.push(e);
+    stringQueue.enqueue(a);
+    stringQueue.enqueue(b);
+    stringQueue.enqueue(c);
+    stringQueue.enqueue(d);
+    stringQueue.enqueue(e);
     
-    cout << a << ", " << b << ", " << c << ", " << d << " and " << e << ", has been added to the stack.\n";
+    cout << a << ", " << b << ", " << c << ", " << d << " and " << e << ", has been added to the queue.\n";
     
-    cout << "Time to pop the stack.\n";
+    cout << "Time to dequeue the queue.\n";
     
-    stringStack.top();
-    cout << ", is on top of the stack.\n";
+    stringQueue.front();
+    cout << ", is int front of the queue.\n";
     
-    cout << "Popping " << e << " from the stack.\n";
-    stringStack.pop();
-    cout << e << ", has been popped from the stack.\n";
-    stringStack.top();
-    cout << ", is on top of the stack.\n";
+    cout << "dequeing " << e << " from the queue.\n";
+    stringQueue.dequeue();
+    cout << e << ", has been dequeued from the queue.\n";
+    stringQueue.front();
+    cout << ", is in front of the queue.\n";
     
-    cout << "Popping " << d << ", from the stack.\n";
-    stringStack.pop();
-    cout << d << ", has been popped from the stack.\n";
-    stringStack.top();
-    cout << ", is on top of the stack.\n";
+    cout << "Dequeing " << d << ", from the queue.\n";
+    stringQueue.dequeue();
+    cout << d << ", has been dequeued from the queue.\n";
+    stringQueue.front();
+    cout << ", is in front of the queue.\n";
     
-    cout << "Popping " << c << ", from the stack.\n";
-    stringStack.pop();
-    cout << c << ", has been popped from the stack.\n";
-    stringStack.top();
-    cout << ", is on top of the stack.\n";
+    cout << "Dequeing " << c << ", from the queue.\n";
+    stringQueue.dequeue();
+    cout << c << ", has been dequeued from the queue.\n";
+    stringQueue.front();
+    cout << ", is in front of the queue.\n";
     
-    cout << "Popping " << b << ", from the stack.\n";
-    stringStack.pop();
-    cout << b << ", has been popped from the stack.\n";
-    stringStack.top();
-    cout << ", is on top of the stack.\n";
+    cout << "Dequeing " << b << ", from the queue.\n";
+    stringQueue.dequeue();
+    cout << b << ", has been dequeued from the queue.\n";
+    stringQueue.front();
+    cout << ", is in front of the queue.\n";
     
-    cout << "Popping " << a << ", from the stack.\n";
-    stringStack.pop();
-    cout << a << ", has been popped from the stack.\n";
+    cout << "Dequeuing " << a << ", from the queue.\n";
+    stringQueue.dequeue();
+    cout << a << ", has been dequeued from the queue.\n";
     
-    cout << "The stack is now empty.\n";
+    cout << "The queue is now empty.\n";
    
     
 }
 
-void useCurrencyStack(){
-    Stack<Currency> currencyStack;
+void useCurrencyQueue(){
+    Queue<Currency> currencyQueue;
    
     float f, g, h, i, j;
     
@@ -203,58 +205,58 @@ void useCurrencyStack(){
     d->addValue(i);
     e->addValue(j);
 
-    cout << "Stack functions coming up!\n";
-    cout << " Pushing ";
+    cout << "Queue functions coming up!\n";
+    cout << " Enqueing ";
     cout << a << ", ";
     cout << b << ", ";
     cout << c << ", ";
     cout << d << ", ";
     cout << e << ", ";
 
-    currencyStack.push(*a);
-    currencyStack.push(*b);
-    currencyStack.push(*c);
-    currencyStack.push(*d);
-    currencyStack.push(*e);
+    currencyQueue.enqueue(*a);
+    currencyQueue.enqueue(*b);
+    currencyQueue.enqueue(*c);
+    currencyQueue.enqueue(*d);
+    currencyQueue.enqueue(*e);
 
-    cout << "Time to pop the stack.\n";
+    cout << "Time to dequeue the queue.\n";
     
-    currencyStack.top();
-    cout << " is on the top of the stack\n";
+    currencyQueue.front();
+    cout << " is in the front of the queue\n";
     
-    cout << "Popping ";
+    cout << "dequeing ";
     cout << e;
-    currencyStack.pop();
+    currencyQueue.dequeue();
     
-    currencyStack.top();
-    cout << " is on the top of the stack\n";
+    currencyQueue.front();
+    cout << " is in the front of the queue\n";
     
-    cout << "Popping ";
+    cout << "dequeuing ";
     cout << d;
-    currencyStack.pop();
+    currencyQueue.dequeue();
     
-    currencyStack.top();
-    cout << " is on the top of the stack\n";
+    currencyQueue.front();
+    cout << " is in the front of the queue\n";
     
-    cout << "Popping ";
+    cout << "dequeuing ";
     cout << c;
-    currencyStack.pop();
+    currencyQueue.dequeue();
     
-    currencyStack.top();
-    cout << " is on the top of the stack\n";
+    currencyQueue.front();
+    cout << " is in the front of the queue\n";
     
-    cout << "Popping ";
+    cout << "dequeuing ";
     cout << b;
-    currencyStack.pop();
+    currencyQueue.dequeue();
 
-    currencyStack.top();
-    cout << " is on the top of the stack\n";
+    currencyQueue.front();
+    cout << " is in the front of the queue\n";
     
-    cout << "Popping ";
+    cout << "Dequeuing ";
     cout << a;
-    currencyStack.pop();
+    currencyQueue.dequeue();
    
-    cout << "The list is empty.\n";
+    cout << "The queue is empty.\n";
     
     
     
