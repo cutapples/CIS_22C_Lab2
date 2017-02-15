@@ -2,7 +2,6 @@
 #include <math.h>
 #include <iostream>
 #include "USDollars.h"
-#include "Currency.h"
 
 using namespace std;
 
