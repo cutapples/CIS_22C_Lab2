@@ -54,4 +54,12 @@ void Currency::subValue(float someValue) {
 	Currency::subFractional(fractionalParts);
 }
 
+ostream& Currency::printCurrency(ostream& os) const {
+	return os << this->WholeParts << "." << this->FractionalParts;
+}
+
+ostream& operator<<(ostream& os, const Currency& currency) {
+	return currency.printCurrency(os);
+}
+
 Currency::~Currency(){}

@@ -11,9 +11,10 @@ public:
 	USDollars();
 	USDollars(float, float);
 
+	virtual ostream& printCurrency(ostream&) const;
 	friend bool operator==(const USDollars& currentCurrency, const USDollars& testCurrency);
 	friend bool operator<(const USDollars& currentCurrency, const float someValue);
-	friend ostream& operator<< (ostream&, const USDollars&);
+	
 
 	~USDollars();
 };

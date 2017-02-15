@@ -22,7 +22,10 @@ public:
 	void subFractional(float fractionalParts);
 	void addValue(float someValue);
 	void subValue(float someValue);
-	
+
+	virtual ostream& printCurrency(ostream&) const;
+	friend ostream& operator<< (ostream&, const Currency&);
+
 	friend void splitParts(float& wholeParts, float& fractionalParts, float someValue);
 
 	virtual ~Currency() = 0;

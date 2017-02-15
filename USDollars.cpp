@@ -6,11 +6,6 @@
 
 using namespace std;
 
-void splitParts(float& wholeParts, float& fractionalParts, float someValue) {
-	fractionalParts = round(fmod((someValue * 100), 100));
-	wholeParts = someValue - (fractionalParts / 100);
-}
-
 USDollars::USDollars() {
 	this->WholeName = "Dollars";
 	this->FractionalName = "Cents";
@@ -39,9 +34,6 @@ bool operator<(const USDollars& currentCurrency, const float someValue) {
 	return ((currentCurrency.WholeParts < whole) || ((currentCurrency.WholeParts == whole) && (currentCurrency.FractionalParts < fractional)));
 }
 
-ostream& operator<<(ostream& os, const USDollars& currency) {
-	if (&os == &cout) {
-		os << "$" << currency.WholeParts << "." << currency.FractionalParts << " USD";
-	}
-	return os;
+ostream& USDollars::printCurrency(ostream& os) const {
+	return os << "$" << this->WholeParts << "." << this->FractionalParts << " USD";
 }
